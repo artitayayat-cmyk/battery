@@ -1,0 +1,1139 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IDP Platform — Individual Development Plan | คณะแพทยศาสตร์ ม.กรุงเทพธนบุรี</title>
+<style>
+  :root{
+    --primary:#1e40af; --primary-dark:#1e3a8a; --primary-light:#dbeafe;
+    --accent:#0891b2; --success:#059669; --warning:#d97706; --danger:#dc2626;
+    --gray-50:#f9fafb; --gray-100:#f3f4f6; --gray-200:#e5e7eb; --gray-300:#d1d5db;
+    --gray-500:#6b7280; --gray-700:#374151; --gray-900:#111827;
+    --shadow:0 1px 3px rgba(0,0,0,.08), 0 1px 2px rgba(0,0,0,.04);
+    --shadow-lg:0 10px 25px rgba(0,0,0,.08), 0 4px 10px rgba(0,0,0,.04);
+    --radius:10px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Sarabun",Roboto,sans-serif;background:var(--gray-50);color:var(--gray-900);line-height:1.6;font-size:15px}
+  .container{max-width:1200px;margin:0 auto;padding:20px}
+  header{background:linear-gradient(135deg,var(--primary) 0%,var(--accent) 100%);color:#fff;padding:24px 0;box-shadow:var(--shadow-lg)}
+  header .container{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+  header h1{font-size:22px;font-weight:700}
+  header .subtitle{font-size:13px;opacity:.9;margin-top:4px}
+  header .user-info{font-size:14px;background:rgba(255,255,255,.15);padding:8px 14px;border-radius:var(--radius);backdrop-filter:blur(8px)}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:10px 18px;border:none;border-radius:var(--radius);font-size:14px;font-weight:600;cursor:pointer;transition:all .15s;text-decoration:none}
+  .btn-primary{background:var(--primary);color:#fff}
+  .btn-primary:hover{background:var(--primary-dark);transform:translateY(-1px)}
+  .btn-success{background:var(--success);color:#fff}
+  .btn-success:hover{filter:brightness(.92)}
+  .btn-warning{background:var(--warning);color:#fff}
+  .btn-secondary{background:#fff;color:var(--gray-700);border:1px solid var(--gray-300)}
+  .btn-secondary:hover{background:var(--gray-100)}
+  .btn-sm{padding:6px 12px;font-size:13px}
+  .btn-block{width:100%}
+  .card{background:#fff;border-radius:var(--radius);padding:24px;box-shadow:var(--shadow);margin-bottom:20px}
+  .card h2{font-size:18px;color:var(--primary);margin-bottom:16px;padding-bottom:12px;border-bottom:2px solid var(--primary-light)}
+  .card h3{font-size:16px;color:var(--gray-900);margin:16px 0 8px}
+  .grid{display:grid;gap:16px}
+  .grid-2{grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+  .grid-3{grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+  .grid-4{grid-template-columns:repeat(auto-fit,minmax(180px,1fr))}
+  .form-group{margin-bottom:16px}
+  .form-group label{display:block;font-weight:600;color:var(--gray-700);margin-bottom:6px;font-size:14px}
+  .form-group label .req{color:var(--danger)}
+  .form-group input,.form-group select,.form-group textarea{width:100%;padding:10px 12px;border:1px solid var(--gray-300);border-radius:var(--radius);font-family:inherit;font-size:14px;background:#fff;transition:border .15s,box-shadow .15s}
+  .form-group input:focus,.form-group select:focus,.form-group textarea:focus{outline:none;border-color:var(--primary);box-shadow:0 0 0 3px rgba(30,64,175,.1)}
+  .form-group .help{font-size:12px;color:var(--gray-500);margin-top:4px}
+  .form-group textarea{resize:vertical;min-height:80px}
+  .stat{background:#fff;padding:18px;border-radius:var(--radius);box-shadow:var(--shadow);border-left:4px solid var(--primary)}
+  .stat .num{font-size:28px;font-weight:700;color:var(--primary)}
+  .stat .lbl{font-size:13px;color:var(--gray-500);margin-top:4px}
+  .stat.success{border-left-color:var(--success)}
+  .stat.success .num{color:var(--success)}
+  .stat.warning{border-left-color:var(--warning)}
+  .stat.warning .num{color:var(--warning)}
+  .stat.danger{border-left-color:var(--danger)}
+  .stat.danger .num{color:var(--danger)}
+  .badge{display:inline-block;padding:4px 10px;border-radius:999px;font-size:12px;font-weight:600}
+  .badge-pending{background:#fef3c7;color:#92400e}
+  .badge-active{background:#dbeafe;color:#1e40af}
+  .badge-done{background:#d1fae5;color:#065f46}
+  .badge-overdue{background:#fee2e2;color:#991b1b}
+  table{width:100%;border-collapse:collapse;font-size:14px}
+  table th{text-align:left;padding:12px;background:var(--gray-100);color:var(--gray-700);font-weight:600;font-size:13px;border-bottom:2px solid var(--gray-200)}
+  table td{padding:12px;border-bottom:1px solid var(--gray-200)}
+  table tr:hover{background:var(--gray-50)}
+  .progress{background:var(--gray-200);height:8px;border-radius:999px;overflow:hidden;margin-top:6px}
+  .progress-bar{height:100%;background:linear-gradient(90deg,var(--primary),var(--accent));transition:width .4s}
+  .alert{padding:12px 16px;border-radius:var(--radius);margin-bottom:16px;font-size:14px}
+  .alert-info{background:#dbeafe;color:#1e3a8a;border-left:4px solid var(--primary)}
+  .alert-success{background:#d1fae5;color:#065f46;border-left:4px solid var(--success)}
+  .alert-warning{background:#fef3c7;color:#92400e;border-left:4px solid var(--warning)}
+  .alert-danger{background:#fee2e2;color:#991b1b;border-left:4px solid var(--danger)}
+  .domain-card{border:2px solid var(--gray-200);border-radius:var(--radius);padding:14px;cursor:pointer;transition:all .15s;background:#fff}
+  .domain-card:hover{border-color:var(--primary);transform:translateY(-2px);box-shadow:var(--shadow-lg)}
+  .domain-card.active{border-color:var(--primary);background:var(--primary-light)}
+  .domain-code{font-size:11px;font-weight:700;color:var(--primary);letter-spacing:1px}
+  .domain-name{font-size:15px;font-weight:700;color:var(--gray-900);margin:4px 0}
+  .domain-th{font-size:13px;color:var(--gray-700)}
+  .tabs{display:flex;gap:4px;border-bottom:2px solid var(--gray-200);margin-bottom:20px;overflow-x:auto}
+  .tab{padding:12px 20px;background:none;border:none;cursor:pointer;font-size:14px;font-weight:600;color:var(--gray-500);border-bottom:3px solid transparent;margin-bottom:-2px;white-space:nowrap}
+  .tab.active{color:var(--primary);border-bottom-color:var(--primary)}
+  .tab:hover:not(.active){color:var(--gray-700)}
+  .modal{position:fixed;inset:0;background:rgba(0,0,0,.5);display:none;align-items:center;justify-content:center;z-index:1000;padding:20px}
+  .modal.show{display:flex}
+  .modal-content{background:#fff;border-radius:var(--radius);padding:24px;max-width:700px;width:100%;max-height:90vh;overflow-y:auto;box-shadow:var(--shadow-lg)}
+  .modal-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;padding-bottom:12px;border-bottom:1px solid var(--gray-200)}
+  .modal-header h2{margin:0;border:none;padding:0}
+  .close-btn{background:none;border:none;font-size:24px;cursor:pointer;color:var(--gray-500);width:32px;height:32px;border-radius:50%}
+  .close-btn:hover{background:var(--gray-100)}
+  .login-box{max-width:440px;margin:60px auto;background:#fff;padding:40px;border-radius:var(--radius);box-shadow:var(--shadow-lg);text-align:center}
+  .login-box .logo{font-size:48px;margin-bottom:8px}
+  .login-box h1{font-size:22px;color:var(--primary);margin-bottom:6px}
+  .login-box p{color:var(--gray-500);font-size:14px;margin-bottom:24px}
+  .hidden{display:none !important}
+  .text-center{text-align:center}
+  .text-muted{color:var(--gray-500)}
+  .text-small{font-size:13px}
+  .mt-2{margin-top:8px}.mt-4{margin-top:16px}.mb-2{margin-bottom:8px}.mb-4{margin-bottom:16px}
+  .flex{display:flex;gap:8px;align-items:center}
+  .flex-between{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px}
+  .pill{display:inline-block;padding:3px 10px;border-radius:999px;font-size:12px;background:var(--primary-light);color:var(--primary);font-weight:600;margin-right:4px}
+  .battery-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin-top:12px}
+  .battery-cell{padding:10px;border-radius:var(--radius);background:var(--gray-100);text-align:center}
+  .battery-cell .lbl{font-size:11px;color:var(--gray-500);margin-bottom:4px}
+  .battery-cell .val{font-size:18px;font-weight:700;color:var(--primary)}
+  .battery-cell.gap-pos{background:#fef3c7}
+  .battery-cell.gap-pos .val{color:var(--warning)}
+  .battery-cell.gap-neg{background:#dbeafe}
+  .battery-cell.gap-neg .val{color:var(--primary)}
+  .footer{text-align:center;padding:24px;color:var(--gray-500);font-size:13px}
+  @media (max-width:640px){
+    header h1{font-size:18px}
+    .container{padding:12px}
+    .card{padding:16px}
+    table{font-size:13px}
+    table th,table td{padding:8px}
+  }
+  @media print{
+    header,.tabs,.btn,.modal{display:none !important}
+    .card{box-shadow:none;border:1px solid var(--gray-200);page-break-inside:avoid}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="container">
+    <div>
+      <h1>IDP Platform — Individual Development Plan</h1>
+      <div class="subtitle">คณะแพทยศาสตร์ มหาวิทยาลัยกรุงเทพธนบุรี · BATTERY 10 Domains</div>
+    </div>
+    <div id="userInfoBox"></div>
+  </div>
+</header>
+
+<div class="container">
+  <div id="appRoot"></div>
+</div>
+
+<div class="footer">
+  ระบบติดตามแผนพัฒนารายบุคคล (IDP) — Affective Domain Development<br>
+  พัฒนาเพื่อการศึกษาแบบ Longitudinal · Outcome-Based Education
+</div>
+
+<div id="modalRoot"></div>
+
+<script>
+/* ============================================================
+   CONFIG — ตั้งค่าหลัก (อาจารย์แก้เฉพาะส่วนนี้)
+   ============================================================ */
+const CONFIG = {
+  // วาง URL ของ Google Apps Script Web App ที่ deploy แล้ว (ขึ้นต้น https://script.google.com/macros/s/.../exec)
+  APPS_SCRIPT_URL: 'PASTE_YOUR_APPS_SCRIPT_WEB_APP_URL_HERE',
+
+  // PIN สำหรับเข้าหน้าอาจารย์ — แก้ได้ตามต้องการ (อย่าใช้รหัสที่เดาง่าย)
+  ADMIN_PIN: '8400med',
+
+  // โหมด demo: ใช้ localStorage เก็บข้อมูลแทน Google Sheet (ทดลองก่อน deploy)
+  DEMO_MODE: true,
+
+  ACADEMIC_YEAR: '2568',
+  COURSE: 'Year 1 — MD Program (รหัส 6818400xxx)'
+};
+
+/* ============================================================
+   รายชื่อนักศึกษา 20 คน
+   ============================================================ */
+const STUDENTS = [
+  {id:'6818400001', name:'ดารารัศมี ม่วงมณี'},
+  {id:'6818400002', name:'สุภัชชา เอื้อเฟื้อเลิศสกุล'},
+  {id:'6818400004', name:'ณัฐณิชา เอกวิทยาเวชนุกูล'},
+  {id:'6818400005', name:'กะรัต ธนะบุญกอง'},
+  {id:'6818400006', name:'ชุติมา แซ่ลิ้ม'},
+  {id:'6818400007', name:'ภูมิเมธา ริมสกุล'},
+  {id:'6818400008', name:'ธีรเมธ พราหมหีด'},
+  {id:'6818400011', name:'อัลิปลีญา นนทวานิช'},
+  {id:'6818400012', name:'กุลกานดา แพงคุณ'},
+  {id:'6818400013', name:'นันทนัช สุขผล'},
+  {id:'6818400015', name:'กิจจา คงนมนาน'},
+  {id:'6818400016', name:'พจน์ณิชา พรหมอยู่'},
+  {id:'6818400017', name:'เตชินทร์ กรรมการ'},
+  {id:'6818400018', name:'ณัฐษ์นิตา ถ่อนสันเทียะ'},
+  {id:'6818400019', name:'บัณฑิตา พิสิฐพัฒนกุล'},
+  {id:'6818400022', name:'สุภัสสรา เข็มพิมาย'},
+  {id:'6818400023', name:'ปัญฐิญา โต๊ะเถื่อน'},
+  {id:'6818400024', name:'ปดิวรัดา ศรีสุนัน'},
+  {id:'6818400025', name:'วรินญา ตาปะสี'},
+  {id:'6818400026', name:'ธนดลพัชร ชวนบุญ'}
+];
+
+/* ============================================================
+   BATTERY 10 Domains
+   ============================================================ */
+const BATTERY_DOMAINS = [
+  {code:'LL', name:'Lifelong Learning', nameTh:'การเรียนรู้ตลอดชีวิต', desc:'ความสามารถในการเรียนรู้ ปรับตัว และแสวงหาความรู้ใหม่อย่างต่อเนื่อง รวมถึง self-directed learning และความใฝ่รู้ทางวิชาชีพ'},
+  {code:'GM', name:'Growth Mindset', nameTh:'กรอบความคิดแบบเติบโต', desc:'ความเชื่อว่าสามารถพัฒนาความสามารถของตนได้ผ่านความพยายาม การเรียนรู้จากความล้มเหลว และเปิดรับ feedback'},
+  {code:'GR', name:'Grit-S', nameTh:'ความมุ่งมั่นไม่ย่อท้อ (ฉบับสั้น)', desc:'ความอดทน มุมานะ มุ่งมั่นต่อเป้าหมายระยะยาวแม้เผชิญอุปสรรคหรือความเหนื่อยล้า (Duckworth Grit-S)'},
+  {code:'RE', name:'Resilience', nameTh:'ความยืดหยุ่นทางใจ', desc:'ความสามารถในการฟื้นตัวจากความเครียด ความล้มเหลว หรือเหตุการณ์กระทบใจ และกลับมาทำงานได้อย่างมีประสิทธิภาพ'},
+  {code:'EI', name:'Emotional Intelligence', nameTh:'ความฉลาดทางอารมณ์', desc:'การรับรู้ เข้าใจ และจัดการอารมณ์ของตนเองและผู้อื่น (self-awareness, self-regulation, social skill)'},
+  {code:'CO', name:'Communication', nameTh:'การสื่อสาร', desc:'ความสามารถในการสื่อสารทั้งการพูด เขียน ฟัง และอวัจนภาษาอย่างมีประสิทธิภาพ — โดยเฉพาะกับผู้ป่วย ครอบครัว และทีมสุขภาพ'},
+  {code:'LE', name:'Leadership', nameTh:'ภาวะผู้นำ', desc:'ความสามารถในการนำทีม กระตุ้นให้เกิดการเปลี่ยนแปลง รับผิดชอบ และทำงานร่วมกับผู้อื่นเพื่อบรรลุเป้าหมายร่วมกัน'},
+  {code:'EM', name:'Empathy', nameTh:'ความเข้าอกเข้าใจ', desc:'ความสามารถในการเข้าใจ รับรู้ความรู้สึก และมุมมองของผู้อื่น โดยเฉพาะในบริบทของผู้ป่วยและครอบครัว'},
+  {code:'DL', name:'Digital Literacy', nameTh:'ความรู้เท่าทันดิจิทัล', desc:'ทักษะการใช้เทคโนโลยีดิจิทัล การประเมินความน่าเชื่อถือของข้อมูล และจริยธรรมในการใช้สื่อออนไลน์'},
+  {code:'CR', name:'Creativity', nameTh:'ความคิดสร้างสรรค์', desc:'ความสามารถในการคิดนอกกรอบ เสนอแนวทางใหม่ในการแก้ปัญหา และนวัตกรรมเพื่อพัฒนาการดูแลผู้ป่วยและงานบริการ'}
+];
+
+/* ============================================================
+   STATE
+   ============================================================ */
+let state = {
+  view:'login',         // login | student | admin
+  user:null,            // {id,name,role}
+  activeTab:'overview',
+  plans:[],
+  logs:[],
+  comments:[],
+  battery:[],
+  selectedStudentId:null
+};
+
+/* ============================================================
+   STORAGE LAYER — เลือก localStorage (DEMO) หรือ Google Apps Script
+   ============================================================ */
+const Storage = {
+  async getAll(){
+    if(CONFIG.DEMO_MODE) return this._getLocal();
+    try{
+      const r = await fetch(CONFIG.APPS_SCRIPT_URL+'?action=getAll', {method:'GET'});
+      return await r.json();
+    }catch(e){
+      console.error('Fetch failed, fallback to local:', e);
+      return this._getLocal();
+    }
+  },
+  async savePlan(plan){
+    if(CONFIG.DEMO_MODE){ this._localSave('plans', plan); return {ok:true}; }
+    return this._post({action:'savePlan', payload:plan});
+  },
+  async addLog(log){
+    if(CONFIG.DEMO_MODE){ this._localSave('logs', log); return {ok:true}; }
+    return this._post({action:'addLog', payload:log});
+  },
+  async addComment(c){
+    if(CONFIG.DEMO_MODE){ this._localSave('comments', c); return {ok:true}; }
+    return this._post({action:'addComment', payload:c});
+  },
+  async upsertBattery(b){
+    if(CONFIG.DEMO_MODE){ this._localUpsertBattery(b); return {ok:true}; }
+    return this._post({action:'upsertBattery', payload:b});
+  },
+  async deletePlan(planId){
+    if(CONFIG.DEMO_MODE){ this._localDelete('plans', planId); return {ok:true}; }
+    return this._post({action:'deletePlan', payload:{planId}});
+  },
+  async _post(body){
+    try{
+      const r = await fetch(CONFIG.APPS_SCRIPT_URL,{
+        method:'POST',
+        body:JSON.stringify(body),
+        headers:{'Content-Type':'text/plain;charset=utf-8'}
+      });
+      return await r.json();
+    }catch(e){ console.error(e); return {ok:false,error:String(e)} }
+  },
+  _getLocal(){
+    return {
+      plans: JSON.parse(localStorage.getItem('idp_plans')||'[]'),
+      logs: JSON.parse(localStorage.getItem('idp_logs')||'[]'),
+      comments: JSON.parse(localStorage.getItem('idp_comments')||'[]'),
+      battery: JSON.parse(localStorage.getItem('idp_battery')||'[]')
+    };
+  },
+  _localSave(key, item){
+    const arr = JSON.parse(localStorage.getItem('idp_'+key)||'[]');
+    if(item.id){
+      const i = arr.findIndex(x=>x.id===item.id);
+      if(i>=0) arr[i] = item; else arr.push(item);
+    } else {
+      item.id = Date.now()+'_'+Math.random().toString(36).slice(2,7);
+      arr.push(item);
+    }
+    localStorage.setItem('idp_'+key, JSON.stringify(arr));
+  },
+  _localDelete(key, id){
+    const arr = JSON.parse(localStorage.getItem('idp_'+key)||'[]').filter(x=>x.id!==id);
+    localStorage.setItem('idp_'+key, JSON.stringify(arr));
+  },
+  _localUpsertBattery(b){
+    const arr = JSON.parse(localStorage.getItem('idp_battery')||'[]');
+    const i = arr.findIndex(x=>x.studentId===b.studentId && x.domain===b.domain);
+    if(i>=0) arr[i]={...arr[i],...b}; else arr.push(b);
+    localStorage.setItem('idp_battery', JSON.stringify(arr));
+  }
+};
+
+/* ============================================================
+   HELPERS
+   ============================================================ */
+function $(sel){ return document.querySelector(sel) }
+function el(html){ const d = document.createElement('div'); d.innerHTML = html.trim(); return d.firstElementChild }
+function fmt(d){ if(!d) return '-'; const dt=new Date(d); return dt.toLocaleDateString('th-TH',{year:'numeric',month:'short',day:'numeric'}) }
+function fmtDateTime(d){ if(!d) return '-'; const dt=new Date(d); return dt.toLocaleString('th-TH',{year:'numeric',month:'short',day:'numeric',hour:'2-digit',minute:'2-digit'}) }
+function daysLeft(d){ if(!d) return null; const today=new Date(); today.setHours(0,0,0,0); const t=new Date(d); t.setHours(0,0,0,0); return Math.round((t-today)/(86400000)) }
+function statusBadge(s,deadline){
+  if(s==='done') return '<span class="badge badge-done">เสร็จสิ้น</span>';
+  if(deadline && daysLeft(deadline)<0 && s!=='done') return '<span class="badge badge-overdue">เลยกำหนด</span>';
+  if(s==='active') return '<span class="badge badge-active">กำลังทำ</span>';
+  return '<span class="badge badge-pending">เริ่มต้น</span>';
+}
+function uid(){ return Date.now()+'_'+Math.random().toString(36).slice(2,7) }
+function escapeHtml(s){ if(s==null) return ''; return String(s).replace(/[&<>"']/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])) }
+function nl2br(s){ return escapeHtml(s).replace(/\n/g,'<br>') }
+function showAlert(msg,type='info',duration=3000){
+  const a = el(`<div class="alert alert-${type}" style="position:fixed;top:90px;right:20px;z-index:2000;min-width:280px;box-shadow:var(--shadow-lg)">${escapeHtml(msg)}</div>`);
+  document.body.appendChild(a);
+  setTimeout(()=>a.remove(), duration);
+}
+
+/* ============================================================
+   LOGIN VIEW
+   ============================================================ */
+function renderLogin(){
+  const params = new URLSearchParams(location.search);
+  const isAdmin = params.get('mode')==='admin';
+  $('#appRoot').innerHTML = `
+    <div class="login-box">
+      <div class="logo">${isAdmin?'👨‍🏫':'🎓'}</div>
+      <h1>${isAdmin?'เข้าสู่ระบบ — อาจารย์':'เข้าสู่ระบบ — นักศึกษา'}</h1>
+      <p>${isAdmin?'กรุณาใส่รหัส PIN สำหรับอาจารย์':'กรุณาใส่รหัสนักศึกษา 10 หลัก'}</p>
+      ${isAdmin
+        ? `<div class="form-group"><input type="password" id="pinInput" placeholder="PIN" maxlength="32"/></div>
+           <button class="btn btn-primary btn-block" id="loginAdminBtn">เข้าสู่ระบบ</button>`
+        : `<div class="form-group">
+             <input type="text" id="sidInput" placeholder="681840000X" maxlength="10" inputmode="numeric"/>
+           </div>
+           <button class="btn btn-primary btn-block" id="loginStuBtn">เข้าสู่ระบบ</button>`
+      }
+      <div class="text-small text-muted mt-4">
+        ${isAdmin
+          ? `<a href="?" style="color:var(--primary)">← กลับหน้านักศึกษา</a>`
+          : `<a href="?mode=admin" style="color:var(--primary)">เข้าหน้าอาจารย์</a>`
+        }
+      </div>
+      <div class="text-small text-muted mt-4" style="border-top:1px solid var(--gray-200);padding-top:12px">
+        ${CONFIG.DEMO_MODE?'⚙️ <b>DEMO MODE</b> — ข้อมูลเก็บใน browser นี้เท่านั้น<br>':''}
+        ปีการศึกษา ${CONFIG.ACADEMIC_YEAR} · ${CONFIG.COURSE}
+      </div>
+    </div>
+  `;
+  if(isAdmin){
+    $('#loginAdminBtn').onclick = ()=>{
+      const v = $('#pinInput').value.trim();
+      if(v===CONFIG.ADMIN_PIN){
+        state.user = {id:'ADMIN', name:'อาจารย์ผู้ดูแลระบบ', role:'admin'};
+        state.view='admin'; render();
+      } else { showAlert('PIN ไม่ถูกต้อง','danger') }
+    };
+    $('#pinInput').addEventListener('keydown',e=>{ if(e.key==='Enter') $('#loginAdminBtn').click() });
+  } else {
+    $('#loginStuBtn').onclick = ()=>{
+      const v = $('#sidInput').value.trim();
+      const stu = STUDENTS.find(s=>s.id===v);
+      if(stu){
+        state.user = {id:stu.id, name:stu.name, role:'student'};
+        state.view='student'; render();
+      } else { showAlert('ไม่พบรหัสนักศึกษานี้ในระบบ','danger') }
+    };
+    $('#sidInput').addEventListener('keydown',e=>{ if(e.key==='Enter') $('#loginStuBtn').click() });
+  }
+}
+
+/* ============================================================
+   STUDENT VIEW
+   ============================================================ */
+async function renderStudent(){
+  const data = await Storage.getAll();
+  state.plans = (data.plans||[]).filter(p=>p.studentId===state.user.id);
+  state.logs = (data.logs||[]).filter(l=>l.studentId===state.user.id);
+  state.comments = (data.comments||[]).filter(c=>c.studentId===state.user.id);
+  state.battery = (data.battery||[]).filter(b=>b.studentId===state.user.id);
+
+  const totalPlans = state.plans.length;
+  const donePlans = state.plans.filter(p=>p.status==='done').length;
+  const overduePlans = state.plans.filter(p=>p.status!=='done' && p.deadline && daysLeft(p.deadline)<0).length;
+  const avgProgress = totalPlans? Math.round(state.plans.reduce((s,p)=>s+(p.progress||0),0)/totalPlans):0;
+
+  $('#userInfoBox').innerHTML = `<div class="user-info">${escapeHtml(state.user.name)} · ${state.user.id} <a href="#" onclick="logout();return false" style="color:#fff;margin-left:8px;text-decoration:underline">ออก</a></div>`;
+
+  $('#appRoot').innerHTML = `
+    <div class="grid grid-4 mb-4">
+      <div class="stat"><div class="num">${totalPlans}</div><div class="lbl">แผน IDP ทั้งหมด</div></div>
+      <div class="stat success"><div class="num">${donePlans}</div><div class="lbl">เสร็จสิ้นแล้ว</div></div>
+      <div class="stat warning"><div class="num">${avgProgress}%</div><div class="lbl">ความก้าวหน้าเฉลี่ย</div></div>
+      <div class="stat danger"><div class="num">${overduePlans}</div><div class="lbl">เลยกำหนด</div></div>
+    </div>
+
+    <div class="tabs">
+      <button class="tab ${state.activeTab==='overview'?'active':''}" data-tab="overview">📊 ภาพรวม</button>
+      <button class="tab ${state.activeTab==='battery'?'active':''}" data-tab="battery">🔋 BATTERY Result</button>
+      <button class="tab ${state.activeTab==='plans'?'active':''}" data-tab="plans">📋 แผน IDP</button>
+      <button class="tab ${state.activeTab==='progress'?'active':''}" data-tab="progress">📈 ติดตามความก้าวหน้า</button>
+      <button class="tab ${state.activeTab==='feedback'?'active':''}" data-tab="feedback">💬 Feedback อาจารย์</button>
+    </div>
+    <div id="tabContent"></div>
+  `;
+  document.querySelectorAll('.tab').forEach(t=>t.onclick=()=>{ state.activeTab=t.dataset.tab; renderStudentTab() });
+  renderStudentTab();
+}
+
+function renderStudentTab(){
+  document.querySelectorAll('.tab').forEach(t=>t.classList.toggle('active', t.dataset.tab===state.activeTab));
+  const c = $('#tabContent');
+  if(state.activeTab==='overview') c.innerHTML = renderStudentOverview();
+  else if(state.activeTab==='battery') c.innerHTML = renderStudentBattery();
+  else if(state.activeTab==='plans') c.innerHTML = renderStudentPlans();
+  else if(state.activeTab==='progress') c.innerHTML = renderStudentProgress();
+  else if(state.activeTab==='feedback') c.innerHTML = renderStudentFeedback();
+  bindStudentEvents();
+}
+
+function renderStudentOverview(){
+  const cov = BATTERY_DOMAINS.map(d=>{
+    const has = state.plans.some(p=>p.domain===d.code);
+    return `<div class="domain-card ${has?'active':''}" data-domain="${d.code}">
+      <div class="domain-code">${d.code}</div>
+      <div class="domain-name">${d.name}</div>
+      <div class="domain-th">${d.nameTh}</div>
+      <div class="text-small mt-2">${has?'✅ มีแผนแล้ว':'⚪ ยังไม่ได้วาง'}</div>
+    </div>`;
+  }).join('');
+  return `
+    <div class="card">
+      <h2>BATTERY 10 Domains — Coverage</h2>
+      <div class="alert alert-info">
+        คลิกที่โดเมนเพื่อ <b>สร้างหรือดูแผน IDP</b> ของแต่ละด้าน — แนะนำให้เลือกอย่างน้อย 2-3 ด้านที่ต้องการพัฒนาก่อน
+      </div>
+      <div class="grid grid-3">${cov}</div>
+    </div>
+
+    <div class="card">
+      <h2>📌 Reflection Note ล่าสุด</h2>
+      ${state.logs.slice(-3).reverse().map(l=>{
+        const p = state.plans.find(p=>p.id===l.planId);
+        return `<div class="alert alert-info">
+          <b>${escapeHtml(p?.title||'-')}</b> · ${fmtDateTime(l.createdAt)}<br>
+          ${nl2br(l.note||'')}
+          ${l.evidence?`<br><a href="${escapeHtml(l.evidence)}" target="_blank">📎 หลักฐาน</a>`:''}
+        </div>`;
+      }).join('') || '<p class="text-muted">ยังไม่มี reflection — ไปที่แท็บ "ติดตามความก้าวหน้า" เพื่อเพิ่ม</p>'}
+    </div>
+  `;
+}
+
+function renderStudentBattery(){
+  if(!state.battery.length){
+    return `<div class="card">
+      <h2>🔋 BATTERY Assessment Results</h2>
+      <div class="alert alert-warning">
+        ยังไม่มีผล BATTERY ในระบบ — อาจารย์จะส่งผล self / peer / teacher assessment ทางอีเมลและอัพโหลดเข้าระบบ<br>
+        เมื่อได้ผลแล้ว ให้ใช้ผลนี้ประกอบการวางแผน IDP ในแท็บ "แผน IDP"
+      </div>
+    </div>`;
+  }
+  const rows = BATTERY_DOMAINS.map(d=>{
+    const b = state.battery.find(x=>x.domain===d.code) || {};
+    const self = b.self||0, peer = b.peer||0, teacher = b.teacher||0;
+    const peerGap = self - peer;
+    const teacherGap = self - teacher;
+    return `<tr>
+      <td><b>${d.code}</b><br><span class="text-small text-muted">${d.name}</span></td>
+      <td class="text-center">${self.toFixed(2)}</td>
+      <td class="text-center">${peer.toFixed(2)}</td>
+      <td class="text-center">${teacher.toFixed(2)}</td>
+      <td class="text-center" style="color:${peerGap>0.5?'var(--warning)':peerGap<-0.5?'var(--primary)':'var(--gray-700)'}">${peerGap>=0?'+':''}${peerGap.toFixed(2)}</td>
+      <td class="text-center" style="color:${teacherGap>0.5?'var(--warning)':teacherGap<-0.5?'var(--primary)':'var(--gray-700)'}">${teacherGap>=0?'+':''}${teacherGap.toFixed(2)}</td>
+      <td>${
+        Math.abs(peerGap)<=0.5 && Math.abs(teacherGap)<=0.5 ? '<span class="badge badge-done">Equal estimate</span>' :
+        (peerGap>0.5||teacherGap>0.5) ? '<span class="badge badge-overdue">Over-estimate</span>' :
+        '<span class="badge badge-active">Under-estimate</span>'
+      }</td>
+    </tr>`;
+  }).join('');
+  return `
+    <div class="card">
+      <h2>🔋 BATTERY Assessment — Calibration</h2>
+      <div class="alert alert-info">
+        <b>การตีความ:</b> ค่า Gap = Self − Peer/Teacher ·
+        <span style="color:var(--warning)">+0.5 ขึ้นไป = Over-estimate (อาจมีอีโก้/ประเมินตัวเองสูง)</span> ·
+        <span style="color:var(--primary)">−0.5 ลงไป = Under-estimate (ควรเพิ่มความมั่นใจ)</span> ·
+        ±0.5 = Equal estimate (calibrated)
+      </div>
+      <div style="overflow-x:auto">
+      <table>
+        <thead><tr><th>Domain</th><th>Self</th><th>Peer (avg)</th><th>Teacher (avg)</th><th>Self−Peer</th><th>Self−Teacher</th><th>Calibration</th></tr></thead>
+        <tbody>${rows}</tbody>
+      </table>
+      </div>
+      <p class="text-small text-muted mt-4">💡 ใช้ผลนี้เลือกโดเมนที่ควรพัฒนาก่อน — โดเมนที่ <b>คะแนนต่ำ</b> หรือ <b>over-estimate มาก</b> มักเป็นจุดเริ่มต้นที่ดี</p>
+    </div>
+  `;
+}
+
+function renderStudentPlans(){
+  const list = state.plans.length? state.plans.map(p=>{
+    const dom = BATTERY_DOMAINS.find(d=>d.code===p.domain);
+    const dl = daysLeft(p.deadline);
+    return `<div class="card" style="border-left:4px solid var(--primary)">
+      <div class="flex-between">
+        <div>
+          <span class="pill">${p.domain} · ${dom?.name||''}</span>
+          ${statusBadge(p.status, p.deadline)}
+        </div>
+        <div class="flex">
+          <button class="btn btn-secondary btn-sm" onclick="editPlan('${p.id}')">✏️ แก้ไข</button>
+          <button class="btn btn-secondary btn-sm" onclick="deletePlan('${p.id}')">🗑️</button>
+        </div>
+      </div>
+      <h3 style="margin-top:8px">${escapeHtml(p.title||'-')}</h3>
+      <div class="grid grid-2 mt-2">
+        <div><b>SMART Goal:</b><br>${nl2br(p.goal||'-')}</div>
+        <div><b>Action Plan:</b><br>${nl2br(p.actions||'-')}</div>
+      </div>
+      <div class="grid grid-2 mt-2">
+        <div><b>Resources/Mentor:</b> ${escapeHtml(p.resources||'-')}</div>
+        <div><b>Deadline:</b> ${fmt(p.deadline)} ${dl!=null?`<span class="text-small text-muted">(${dl>=0?'อีก '+dl+' วัน':'เลย '+Math.abs(dl)+' วัน'})</span>`:''}</div>
+      </div>
+      <div class="mt-4">
+        <div class="flex-between"><b>Progress</b><span>${p.progress||0}%</span></div>
+        <div class="progress"><div class="progress-bar" style="width:${p.progress||0}%"></div></div>
+      </div>
+      ${p.reflection?`<div style="background:#fef9c3;padding:12px;border-radius:var(--radius);border-left:4px solid var(--warning);margin-top:14px">
+        <b>🪞 Self-Reflection (หลังวางแผน):</b><br>${nl2br(p.reflection)}
+      </div>`:'<div class="alert alert-warning text-small mt-2">⚠️ ยังไม่ได้กรอก Self-Reflection — กดแก้ไขเพื่อเขียนสะท้อนคิด</div>'}
+    </div>`;
+  }).join(''):'<div class="alert alert-warning">ยังไม่มีแผน IDP — กดปุ่ม "+ สร้างแผนใหม่" ด้านล่าง</div>';
+
+  return `
+    <div class="flex-between mb-4">
+      <h2 style="color:var(--primary)">📋 แผน IDP ของฉัน</h2>
+      <button class="btn btn-primary" onclick="newPlan()">+ สร้างแผนใหม่</button>
+    </div>
+    ${list}
+  `;
+}
+
+function renderStudentProgress(){
+  if(!state.plans.length) return '<div class="alert alert-warning">ยังไม่มีแผน IDP — สร้างแผนก่อนเพื่อบันทึกความก้าวหน้า</div>';
+  return `
+    <div class="card">
+      <h2>📈 บันทึกความก้าวหน้า</h2>
+      <div class="form-group">
+        <label>เลือกแผนที่ต้องการ update <span class="req">*</span></label>
+        <select id="logPlan">
+          ${state.plans.map(p=>`<option value="${p.id}">${escapeHtml(p.title)} · ${p.domain}</option>`).join('')}
+        </select>
+      </div>
+      <div class="form-group">
+        <label>% ความก้าวหน้าใหม่ (0-100) <span class="req">*</span></label>
+        <input type="number" id="logProgress" min="0" max="100" placeholder="เช่น 40">
+      </div>
+      <div class="form-group">
+        <label>สิ่งที่ทำไปแล้ว / Reflection <span class="req">*</span></label>
+        <textarea id="logNote" placeholder="เขียนสิ่งที่ลงมือทำ ผลลัพธ์ ปัญหาที่พบ และสิ่งที่จะปรับ"></textarea>
+      </div>
+      <div class="form-group">
+        <label>Link หลักฐาน (Google Drive / รูป / เอกสาร) — ไม่บังคับ</label>
+        <input type="url" id="logEvidence" placeholder="https://...">
+      </div>
+      <button class="btn btn-primary" id="saveLog">บันทึก reflection</button>
+    </div>
+
+    <div class="card">
+      <h2>ประวัติการ update</h2>
+      ${state.logs.length? state.logs.slice().reverse().map(l=>{
+        const p = state.plans.find(p=>p.id===l.planId);
+        return `<div class="alert alert-info">
+          <div class="flex-between"><b>${escapeHtml(p?.title||'-')}</b><span class="text-small">${fmtDateTime(l.createdAt)}</span></div>
+          <div class="text-small text-muted">Progress → ${l.progress}%</div>
+          <div class="mt-2">${nl2br(l.note||'')}</div>
+          ${l.evidence?`<a href="${escapeHtml(l.evidence)}" target="_blank">📎 หลักฐาน</a>`:''}
+        </div>`;
+      }).join(''):'<p class="text-muted">ยังไม่มีประวัติ</p>'}
+    </div>
+  `;
+}
+
+function renderStudentFeedback(){
+  return `
+    <div class="card">
+      <h2>💬 Feedback จากอาจารย์</h2>
+      ${state.comments.length? state.comments.slice().reverse().map(c=>{
+        const p = state.plans.find(p=>p.id===c.planId);
+        return `<div class="alert alert-success">
+          <div class="flex-between"><b>${escapeHtml(c.facultyName||'อาจารย์')}</b><span class="text-small">${fmtDateTime(c.createdAt)}</span></div>
+          <div class="text-small text-muted">เกี่ยวกับ: ${escapeHtml(p?.title||'IDP โดยรวม')}</div>
+          <div class="mt-2">${nl2br(c.comment||'')}</div>
+        </div>`;
+      }).join(''):'<p class="text-muted">ยังไม่มี feedback จากอาจารย์</p>'}
+    </div>
+  `;
+}
+
+function bindStudentEvents(){
+  document.querySelectorAll('.domain-card[data-domain]').forEach(c=>c.onclick=()=>{
+    const code = c.dataset.domain;
+    const existing = state.plans.find(p=>p.domain===code);
+    if(existing) editPlan(existing.id); else newPlan(code);
+  });
+  if($('#saveLog')) $('#saveLog').onclick = saveLog;
+}
+
+async function saveLog(){
+  const planId = $('#logPlan').value;
+  const progress = parseInt($('#logProgress').value);
+  const note = $('#logNote').value.trim();
+  const evidence = $('#logEvidence').value.trim();
+  if(!planId || isNaN(progress) || !note){ showAlert('กรุณากรอกข้อมูลให้ครบ','warning'); return }
+  const log = {id:uid(),planId,studentId:state.user.id,progress,note,evidence,createdAt:new Date().toISOString()};
+  await Storage.addLog(log);
+  // update plan progress
+  const plan = state.plans.find(p=>p.id===planId);
+  if(plan){
+    plan.progress = progress;
+    plan.status = progress>=100?'done':'active';
+    plan.updatedAt = new Date().toISOString();
+    await Storage.savePlan(plan);
+  }
+  showAlert('บันทึกเรียบร้อย','success');
+  await renderStudent();
+}
+
+window.newPlan = function(prefDomain){
+  openPlanModal(null, prefDomain);
+};
+window.editPlan = function(id){
+  const p = state.plans.find(p=>p.id===id);
+  if(p) openPlanModal(p);
+};
+window.deletePlan = async function(id){
+  if(!confirm('ยืนยันการลบแผนนี้?')) return;
+  await Storage.deletePlan(id);
+  showAlert('ลบเรียบร้อย','success');
+  await renderStudent();
+};
+window.logout = function(){
+  state.user=null; state.view='login'; state.activeTab='overview';
+  history.replaceState(null,'',location.pathname);
+  render();
+};
+
+function openPlanModal(plan, prefDomain){
+  const isEdit = !!plan;
+  const p = plan || {domain:prefDomain||'LL', title:'', goal:'', actions:'', resources:'', deadline:'', progress:0, status:'pending', reflection:''};
+  $('#modalRoot').innerHTML = `
+    <div class="modal show" id="planModal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2>${isEdit?'แก้ไขแผน IDP':'สร้างแผน IDP ใหม่'}</h2>
+          <button class="close-btn" onclick="closeModal()">×</button>
+        </div>
+        <div class="form-group">
+          <label>BATTERY Domain <span class="req">*</span></label>
+          <select id="pDomain">
+            ${BATTERY_DOMAINS.map(d=>`<option value="${d.code}" ${p.domain===d.code?'selected':''}>${d.code} · ${d.name} (${d.nameTh})</option>`).join('')}
+          </select>
+          <div class="help" id="pDomainDesc"></div>
+        </div>
+        <div class="form-group">
+          <label>หัวข้อแผน <span class="req">*</span></label>
+          <input type="text" id="pTitle" value="${escapeHtml(p.title)}" placeholder="เช่น พัฒนาการสื่อสารกับผู้ป่วย">
+        </div>
+        <div class="form-group">
+          <label>SMART Goal <span class="req">*</span></label>
+          <textarea id="pGoal" placeholder="Specific, Measurable, Achievable, Relevant, Time-bound — เช่น 'ภายใน 8 สัปดาห์ จะสามารถซักประวัติผู้ป่วย 5 ราย โดยได้รับ feedback บวกจาก preceptor อย่างน้อย 4/5 ราย'">${escapeHtml(p.goal)}</textarea>
+        </div>
+        <div class="form-group">
+          <label>Action Plan <span class="req">*</span></label>
+          <textarea id="pActions" placeholder="ลิสต์กิจกรรม / milestones เช่น&#10;1. อ่าน Calgary-Cambridge guide สัปดาห์ที่ 1&#10;2. ฝึก role-play กับเพื่อน 3 ครั้ง&#10;3. ขอ supervisor สังเกต 2 ครั้ง">${escapeHtml(p.actions)}</textarea>
+        </div>
+        <div class="grid grid-2">
+          <div class="form-group">
+            <label>Resources / Mentor</label>
+            <input type="text" id="pResources" value="${escapeHtml(p.resources||'')}" placeholder="หนังสือ / คอร์ส / อาจารย์ที่ปรึกษา">
+          </div>
+          <div class="form-group">
+            <label>Deadline <span class="req">*</span></label>
+            <input type="date" id="pDeadline" value="${p.deadline||''}">
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Status</label>
+          <select id="pStatus">
+            <option value="pending" ${p.status==='pending'?'selected':''}>เริ่มต้น</option>
+            <option value="active" ${p.status==='active'?'selected':''}>กำลังทำ</option>
+            <option value="done" ${p.status==='done'?'selected':''}>เสร็จสิ้น</option>
+          </select>
+        </div>
+
+        <div style="margin:20px -24px;border-top:2px dashed var(--gray-300)"></div>
+
+        <div class="form-group" style="background:#fef9c3;padding:16px;border-radius:var(--radius);border-left:4px solid var(--warning)">
+          <label style="font-size:15px">🪞 Self-Reflection <span class="req">*</span> <span class="text-small text-muted" style="font-weight:normal">(เขียนหลังจากวางแผนครบแล้ว)</span></label>
+          <textarea id="pReflection" rows="6" placeholder="หลังจากที่ได้วางแผนครบทุกองค์ประกอบข้างบนแล้ว ลองสะท้อนคิด 4-6 ประโยค ครอบคลุม:
+• เมื่อมองแผนทั้งหมดที่เพิ่งวาง รู้สึกว่าทำได้จริงไหม? อะไรคือความท้าทายที่สุด?
+• ทำไมจึงเลือกพัฒนาด้านนี้? (เชื่อมโยงผล BATTERY: self/peer/teacher และ calibration เป็นอย่างไร)
+• Feedback จากเพื่อนหรืออาจารย์ที่ทำให้ตัดสินใจวางแผนนี้คืออะไร? เห็นจุดแข็ง/จุดที่ต้องพัฒนาอะไรในตัวเอง?
+• ความรู้สึกตอนเห็นผล BATTERY (over/under/equal estimate) เป็นอย่างไร? แผนนี้สอดคล้องกับสิ่งที่ค้นพบหรือไม่?
+• คาดหวังว่าเมื่อแผนนี้เสร็จ ตัวเองจะเปลี่ยนไปอย่างไร? และจะรู้ได้ยังไงว่าเปลี่ยนจริง?">${escapeHtml(p.reflection||'')}</textarea>
+          <div class="help">การสะท้อนคิด <b>หลังการวางแผน</b> ช่วยพัฒนา metacognition และ self-awareness — บังคับกรอกขั้นต่ำ 30 ตัวอักษร</div>
+        </div>
+
+        <div class="flex-between mt-4">
+          <button class="btn btn-secondary" onclick="closeModal()">ยกเลิก</button>
+          <button class="btn btn-primary" id="savePlanBtn">${isEdit?'บันทึกการแก้ไข':'สร้างแผน'}</button>
+        </div>
+      </div>
+    </div>
+  `;
+  const updateDesc = ()=>{
+    const c = $('#pDomain').value;
+    const d = BATTERY_DOMAINS.find(x=>x.code===c);
+    $('#pDomainDesc').innerHTML = d? `<b>${d.nameTh}</b>: ${escapeHtml(d.desc)}` : '';
+  };
+  $('#pDomain').onchange = updateDesc;
+  updateDesc();
+  $('#savePlanBtn').onclick = async ()=>{
+    const reflection = $('#pReflection').value.trim();
+    const next = {
+      ...(plan||{}),
+      id: plan?.id || uid(),
+      studentId: state.user.id,
+      studentName: state.user.name,
+      domain: $('#pDomain').value,
+      title: $('#pTitle').value.trim(),
+      reflection: reflection,
+      goal: $('#pGoal').value.trim(),
+      actions: $('#pActions').value.trim(),
+      resources: $('#pResources').value.trim(),
+      deadline: $('#pDeadline').value,
+      status: $('#pStatus').value,
+      progress: plan?.progress || 0,
+      createdAt: plan?.createdAt || new Date().toISOString(),
+      updatedAt: new Date().toISOString()
+    };
+    if(!next.title || !next.goal || !next.actions || !next.deadline){ showAlert('กรุณากรอกข้อมูลที่บังคับให้ครบ','warning'); return }
+    if(!reflection || reflection.length < 30){ showAlert('กรุณาเขียน Self-Reflection อย่างน้อย 30 ตัวอักษร — ส่วนนี้สำคัญต่อการพัฒนา metacognition','warning',5000); return }
+    await Storage.savePlan(next);
+    showAlert(plan?'แก้ไขเรียบร้อย':'สร้างแผนเรียบร้อย','success');
+    closeModal();
+    await renderStudent();
+  };
+}
+
+window.closeModal = function(){ $('#modalRoot').innerHTML='' };
+
+/* ============================================================
+   ADMIN VIEW
+   ============================================================ */
+async function renderAdmin(){
+  const data = await Storage.getAll();
+  state.plans = data.plans||[];
+  state.logs = data.logs||[];
+  state.comments = data.comments||[];
+  state.battery = data.battery||[];
+
+  $('#userInfoBox').innerHTML = `<div class="user-info">👨‍🏫 ${escapeHtml(state.user.name)} <a href="#" onclick="logout();return false" style="color:#fff;margin-left:8px;text-decoration:underline">ออก</a></div>`;
+
+  $('#appRoot').innerHTML = `
+    <div class="tabs">
+      <button class="tab ${state.activeTab==='overview'?'active':''}" data-tab="overview">📊 Dashboard</button>
+      <button class="tab ${state.activeTab==='students'?'active':''}" data-tab="students">👥 รายนักศึกษา</button>
+      <button class="tab ${state.activeTab==='plans'?'active':''}" data-tab="plans">📋 แผนทั้งหมด</button>
+      <button class="tab ${state.activeTab==='battery'?'active':''}" data-tab="battery">🔋 จัดการ BATTERY</button>
+      <button class="tab ${state.activeTab==='export'?'active':''}" data-tab="export">📤 Export</button>
+    </div>
+    <div id="tabContent"></div>
+  `;
+  document.querySelectorAll('.tab').forEach(t=>t.onclick=()=>{ state.activeTab=t.dataset.tab; state.selectedStudentId=null; renderAdminTab() });
+  renderAdminTab();
+}
+
+function renderAdminTab(){
+  document.querySelectorAll('.tab').forEach(t=>t.classList.toggle('active', t.dataset.tab===state.activeTab));
+  const c = $('#tabContent');
+  if(state.activeTab==='overview') c.innerHTML = renderAdminOverview();
+  else if(state.activeTab==='students') c.innerHTML = renderAdminStudents();
+  else if(state.activeTab==='plans') c.innerHTML = renderAdminPlans();
+  else if(state.activeTab==='battery') c.innerHTML = renderAdminBattery();
+  else if(state.activeTab==='export') c.innerHTML = renderAdminExport();
+  bindAdminEvents();
+}
+
+function renderAdminOverview(){
+  const totalStudents = STUDENTS.length;
+  const studentsWithPlan = new Set(state.plans.map(p=>p.studentId)).size;
+  const totalPlans = state.plans.length;
+  const donePlans = state.plans.filter(p=>p.status==='done').length;
+  const overduePlans = state.plans.filter(p=>p.status!=='done' && p.deadline && daysLeft(p.deadline)<0).length;
+  const avgProgress = totalPlans? Math.round(state.plans.reduce((s,p)=>s+(p.progress||0),0)/totalPlans):0;
+
+  // domain distribution
+  const domainStats = BATTERY_DOMAINS.map(d=>{
+    const ps = state.plans.filter(p=>p.domain===d.code);
+    return {code:d.code, name:d.name, count:ps.length, avg: ps.length?Math.round(ps.reduce((s,p)=>s+(p.progress||0),0)/ps.length):0};
+  });
+
+  // students who haven't started
+  const noPlan = STUDENTS.filter(s=>!state.plans.some(p=>p.studentId===s.id));
+
+  return `
+    <div class="grid grid-4 mb-4">
+      <div class="stat"><div class="num">${studentsWithPlan}/${totalStudents}</div><div class="lbl">นศ. ที่เริ่มทำแผน</div></div>
+      <div class="stat"><div class="num">${totalPlans}</div><div class="lbl">แผน IDP รวม</div></div>
+      <div class="stat success"><div class="num">${donePlans}</div><div class="lbl">เสร็จสิ้น</div></div>
+      <div class="stat danger"><div class="num">${overduePlans}</div><div class="lbl">เลยกำหนด</div></div>
+    </div>
+
+    <div class="card">
+      <h2>📊 กระจายตัวของแผนตาม Domain</h2>
+      <div class="grid grid-2">
+        ${domainStats.map(d=>`
+          <div>
+            <div class="flex-between"><b>${d.code} · ${d.name}</b><span>${d.count} แผน · เฉลี่ย ${d.avg}%</span></div>
+            <div class="progress"><div class="progress-bar" style="width:${Math.min(100,d.count*10)}%"></div></div>
+          </div>
+        `).join('')}
+      </div>
+    </div>
+
+    ${noPlan.length?`<div class="card">
+      <h2>⚠️ นักศึกษาที่ยังไม่ได้สร้างแผน (${noPlan.length} คน)</h2>
+      <div class="grid grid-3">
+        ${noPlan.map(s=>`<div class="alert alert-warning text-small">${s.id} · ${escapeHtml(s.name)}</div>`).join('')}
+      </div>
+    </div>`:''}
+  `;
+}
+
+function renderAdminStudents(){
+  if(state.selectedStudentId) return renderAdminStudentDetail(state.selectedStudentId);
+  const rows = STUDENTS.map(s=>{
+    const ps = state.plans.filter(p=>p.studentId===s.id);
+    const ls = state.logs.filter(l=>l.studentId===s.id);
+    const lastLog = ls.length? ls.reduce((a,b)=>new Date(a.createdAt)>new Date(b.createdAt)?a:b):null;
+    const avg = ps.length?Math.round(ps.reduce((sum,p)=>sum+(p.progress||0),0)/ps.length):0;
+    const overdue = ps.filter(p=>p.status!=='done' && p.deadline && daysLeft(p.deadline)<0).length;
+    return `<tr style="cursor:pointer" onclick="selectStudent('${s.id}')">
+      <td><b>${s.id}</b></td>
+      <td>${escapeHtml(s.name)}</td>
+      <td class="text-center">${ps.length}</td>
+      <td><div class="progress" style="width:120px"><div class="progress-bar" style="width:${avg}%"></div></div><span class="text-small">${avg}%</span></td>
+      <td>${overdue?`<span class="badge badge-overdue">${overdue}</span>`:'-'}</td>
+      <td class="text-small">${lastLog?fmtDateTime(lastLog.createdAt):'<span class="text-muted">ยังไม่มี</span>'}</td>
+    </tr>`;
+  }).join('');
+  return `
+    <div class="card">
+      <h2>👥 รายนักศึกษาทั้งหมด — คลิกที่แถวเพื่อดูรายละเอียด</h2>
+      <div style="overflow-x:auto">
+      <table>
+        <thead><tr><th>รหัส</th><th>ชื่อ</th><th>จำนวนแผน</th><th>Progress เฉลี่ย</th><th>เลยกำหนด</th><th>Update ล่าสุด</th></tr></thead>
+        <tbody>${rows}</tbody>
+      </table>
+      </div>
+    </div>
+  `;
+}
+
+function renderAdminStudentDetail(sid){
+  const stu = STUDENTS.find(s=>s.id===sid);
+  if(!stu) return '<div class="alert alert-danger">ไม่พบนักศึกษา</div>';
+  const plans = state.plans.filter(p=>p.studentId===sid);
+  const logs = state.logs.filter(l=>l.studentId===sid).slice().reverse();
+  const comments = state.comments.filter(c=>c.studentId===sid).slice().reverse();
+  const battery = state.battery.filter(b=>b.studentId===sid);
+
+  return `
+    <div class="flex-between mb-4">
+      <h2 style="color:var(--primary);margin:0">👤 ${escapeHtml(stu.name)} · ${stu.id}</h2>
+      <button class="btn btn-secondary" onclick="state.selectedStudentId=null;renderAdminTab()">← กลับ</button>
+    </div>
+
+    <div class="card">
+      <h2>BATTERY Calibration</h2>
+      ${battery.length? `<div class="battery-grid">${BATTERY_DOMAINS.map(d=>{
+        const b = battery.find(x=>x.domain===d.code)||{};
+        const peerGap = (b.self||0)-(b.peer||0);
+        const cls = peerGap>0.5?'gap-pos':peerGap<-0.5?'gap-neg':'';
+        return `<div class="battery-cell ${cls}">
+          <div class="lbl">${d.code} · self/peer/teacher</div>
+          <div class="val">${(b.self||0).toFixed(1)} / ${(b.peer||0).toFixed(1)} / ${(b.teacher||0).toFixed(1)}</div>
+        </div>`;
+      }).join('')}</div>`:'<p class="text-muted">ยังไม่มีผล BATTERY</p>'}
+    </div>
+
+    <div class="card">
+      <h2>📋 แผน IDP ทั้งหมด (${plans.length})</h2>
+      ${plans.length? plans.map(p=>{
+        const dom = BATTERY_DOMAINS.find(d=>d.code===p.domain);
+        return `<div style="border-left:3px solid var(--primary);padding:12px;margin-bottom:12px;background:var(--gray-50);border-radius:6px">
+          <div class="flex-between">
+            <div><span class="pill">${p.domain} · ${dom?.name||''}</span> ${statusBadge(p.status, p.deadline)}</div>
+            <button class="btn btn-secondary btn-sm" onclick="addComment('${p.id}','${p.studentId}')">+ Feedback</button>
+          </div>
+          <h3>${escapeHtml(p.title)}</h3>
+          <div class="text-small"><b>Goal:</b> ${nl2br(p.goal||'')}</div>
+          <div class="text-small mt-2"><b>Actions:</b> ${nl2br(p.actions||'')}</div>
+          <div class="text-small mt-2"><b>Deadline:</b> ${fmt(p.deadline)} · <b>Progress:</b> ${p.progress||0}%</div>
+          <div class="progress"><div class="progress-bar" style="width:${p.progress||0}%"></div></div>
+          ${p.reflection?`<div style="background:#fef9c3;padding:10px;border-radius:6px;border-left:3px solid var(--warning);margin-top:10px" class="text-small">
+            <b>🪞 Self-Reflection (หลังวางแผน):</b><br>${nl2br(p.reflection)}
+          </div>`:'<div class="alert alert-warning text-small mt-2">⚠️ นักศึกษายังไม่ได้กรอก Self-Reflection</div>'}
+        </div>`;
+      }).join(''):'<p class="text-muted">ยังไม่มีแผน</p>'}
+    </div>
+
+    <div class="card">
+      <h2>📈 ประวัติการ update (${logs.length})</h2>
+      ${logs.length? logs.slice(0,10).map(l=>{
+        const p = plans.find(x=>x.id===l.planId);
+        return `<div class="alert alert-info">
+          <div class="flex-between"><b>${escapeHtml(p?.title||'-')}</b><span class="text-small">${fmtDateTime(l.createdAt)} · ${l.progress}%</span></div>
+          ${nl2br(l.note||'')}
+          ${l.evidence?`<br><a href="${escapeHtml(l.evidence)}" target="_blank">📎 หลักฐาน</a>`:''}
+        </div>`;
+      }).join(''):'<p class="text-muted">ยังไม่มีประวัติ</p>'}
+    </div>
+
+    <div class="card">
+      <h2>💬 Feedback ที่อาจารย์เคยให้ (${comments.length})</h2>
+      ${comments.length? comments.map(c=>{
+        const p = plans.find(x=>x.id===c.planId);
+        return `<div class="alert alert-success">
+          <b>${escapeHtml(c.facultyName||'อาจารย์')}</b> · ${fmtDateTime(c.createdAt)}<br>
+          <span class="text-small text-muted">${escapeHtml(p?.title||'IDP โดยรวม')}</span>
+          <div class="mt-2">${nl2br(c.comment||'')}</div>
+        </div>`;
+      }).join(''):'<p class="text-muted">ยังไม่ได้ให้ feedback</p>'}
+    </div>
+  `;
+}
+
+function renderAdminPlans(){
+  const rows = state.plans.slice().sort((a,b)=>new Date(b.updatedAt||b.createdAt)-new Date(a.updatedAt||a.createdAt)).map(p=>{
+    const dom = BATTERY_DOMAINS.find(d=>d.code===p.domain);
+    return `<tr>
+      <td class="text-small"><b>${p.studentId}</b><br>${escapeHtml(p.studentName||'')}</td>
+      <td><span class="pill">${p.domain}</span> ${escapeHtml(dom?.name||'')}</td>
+      <td>${escapeHtml(p.title)}</td>
+      <td>${fmt(p.deadline)}</td>
+      <td>${p.progress||0}%<div class="progress"><div class="progress-bar" style="width:${p.progress||0}%"></div></div></td>
+      <td>${statusBadge(p.status,p.deadline)}</td>
+      <td><button class="btn btn-secondary btn-sm" onclick="selectStudent('${p.studentId}')">ดู</button></td>
+    </tr>`;
+  }).join('');
+  return `
+    <div class="card">
+      <h2>📋 แผน IDP ทั้งหมด (${state.plans.length})</h2>
+      <div style="overflow-x:auto">
+      <table>
+        <thead><tr><th>นักศึกษา</th><th>Domain</th><th>หัวข้อ</th><th>Deadline</th><th>Progress</th><th>Status</th><th></th></tr></thead>
+        <tbody>${rows||'<tr><td colspan="7" class="text-muted text-center">ยังไม่มีข้อมูล</td></tr>'}</tbody>
+      </table>
+      </div>
+    </div>
+  `;
+}
+
+function renderAdminBattery(){
+  const rows = STUDENTS.map(s=>{
+    const cells = BATTERY_DOMAINS.map(d=>{
+      const b = state.battery.find(x=>x.studentId===s.id && x.domain===d.code) || {};
+      return `<td class="text-small text-center">
+        <input type="number" step="0.1" min="1" max="5" value="${b.self??''}" placeholder="self" data-sid="${s.id}" data-dom="${d.code}" data-field="self" style="width:50px;padding:4px;font-size:12px">
+        <input type="number" step="0.1" min="1" max="5" value="${b.peer??''}" placeholder="peer" data-sid="${s.id}" data-dom="${d.code}" data-field="peer" style="width:50px;padding:4px;font-size:12px">
+        <input type="number" step="0.1" min="1" max="5" value="${b.teacher??''}" placeholder="tch" data-sid="${s.id}" data-dom="${d.code}" data-field="teacher" style="width:50px;padding:4px;font-size:12px">
+      </td>`;
+    }).join('');
+    return `<tr><td><b>${s.id}</b><br><span class="text-small">${escapeHtml(s.name)}</span></td>${cells}</tr>`;
+  }).join('');
+
+  return `
+    <div class="card">
+      <h2>🔋 ใส่/แก้ไขผล BATTERY (Likert 1-5)</h2>
+      <div class="alert alert-info">
+        แต่ละช่องมี 3 input คือ <b>self</b> / <b>peer (avg)</b> / <b>teacher (avg)</b> · กดปุ่ม "บันทึกทั้งหมด" เพื่อ save
+      </div>
+      <div style="overflow:auto;max-width:100%">
+      <table>
+        <thead><tr><th style="position:sticky;left:0;background:var(--gray-100);z-index:1">นักศึกษา</th>${BATTERY_DOMAINS.map(d=>`<th class="text-center">${d.code}</th>`).join('')}</tr></thead>
+        <tbody>${rows}</tbody>
+      </table>
+      </div>
+      <div class="mt-4 flex">
+        <button class="btn btn-primary" id="saveBatteryBtn">💾 บันทึกทั้งหมด</button>
+        <button class="btn btn-secondary" id="importCsvBtn">📥 Import CSV</button>
+        <input type="file" id="csvFile" accept=".csv" class="hidden">
+      </div>
+      <p class="text-small text-muted mt-2">CSV format: <code>studentId,domain,self,peer,teacher</code> (header บรรทัดแรก)</p>
+    </div>
+  `;
+}
+
+function renderAdminExport(){
+  return `
+    <div class="card">
+      <h2>📤 Export ข้อมูล</h2>
+      <p class="text-muted mb-4">ดาวน์โหลดข้อมูลทั้งหมดเพื่อทำ report หรือ backup</p>
+      <div class="grid grid-2">
+        <button class="btn btn-primary" onclick="exportCsv('plans')">📄 Export แผน IDP (CSV)</button>
+        <button class="btn btn-primary" onclick="exportCsv('logs')">📄 Export Progress Logs (CSV)</button>
+        <button class="btn btn-primary" onclick="exportCsv('comments')">📄 Export Faculty Comments (CSV)</button>
+        <button class="btn btn-primary" onclick="exportCsv('battery')">📄 Export BATTERY Results (CSV)</button>
+        <button class="btn btn-success" onclick="exportJson()">💾 Export ALL (JSON Backup)</button>
+        <button class="btn btn-warning" onclick="window.print()">🖨️ พิมพ์รายงาน</button>
+      </div>
+    </div>
+    <div class="card">
+      <h2>📦 Import / Restore</h2>
+      <div class="form-group">
+        <label>เลือกไฟล์ JSON ที่เคย backup ไว้</label>
+        <input type="file" id="restoreFile" accept=".json">
+      </div>
+      <button class="btn btn-warning" id="restoreBtn">⬆️ Restore จากไฟล์</button>
+      <p class="text-small text-muted mt-2">⚠️ การ restore จะเขียนทับข้อมูลปัจจุบัน</p>
+    </div>
+  `;
+}
+
+function bindAdminEvents(){
+  if($('#saveBatteryBtn')) $('#saveBatteryBtn').onclick = saveBattery;
+  if($('#importCsvBtn')) $('#importCsvBtn').onclick = ()=>$('#csvFile').click();
+  if($('#csvFile')) $('#csvFile').onchange = importCsv;
+  if($('#restoreBtn')) $('#restoreBtn').onclick = restoreJson;
+}
+
+window.selectStudent = function(sid){ state.selectedStudentId=sid; state.activeTab='students'; renderAdminTab() };
+window.addComment = function(planId, sid){
+  const fname = prompt('ใส่ชื่ออาจารย์ผู้ comment:', state.user.name);
+  if(!fname) return;
+  const text = prompt('Feedback:');
+  if(!text) return;
+  Storage.addComment({id:uid(), planId, studentId:sid, facultyName:fname, comment:text, createdAt:new Date().toISOString()})
+    .then(()=>{ showAlert('บันทึก feedback แล้ว','success'); renderAdmin() });
+};
+
+async function saveBattery(){
+  const inputs = document.querySelectorAll('input[data-sid][data-dom]');
+  const map = {};
+  inputs.forEach(i=>{
+    const k = i.dataset.sid+'|'+i.dataset.dom;
+    if(!map[k]) map[k] = {studentId:i.dataset.sid, domain:i.dataset.dom};
+    const v = parseFloat(i.value);
+    if(!isNaN(v)) map[k][i.dataset.field] = v;
+  });
+  for(const k in map){ await Storage.upsertBattery(map[k]) }
+  showAlert('บันทึกผล BATTERY เรียบร้อย','success');
+  await renderAdmin();
+}
+
+function importCsv(e){
+  const file = e.target.files[0]; if(!file) return;
+  const reader = new FileReader();
+  reader.onload = async ev=>{
+    const lines = ev.target.result.split(/\r?\n/).filter(l=>l.trim());
+    const header = lines[0].split(',').map(s=>s.trim().toLowerCase());
+    const idx = {sid:header.indexOf('studentid'), dom:header.indexOf('domain'), self:header.indexOf('self'), peer:header.indexOf('peer'), teacher:header.indexOf('teacher')};
+    let count=0;
+    for(let i=1;i<lines.length;i++){
+      const c = lines[i].split(',');
+      const b = {studentId:c[idx.sid]?.trim(), domain:c[idx.dom]?.trim()};
+      if(idx.self>=0) b.self = parseFloat(c[idx.self]);
+      if(idx.peer>=0) b.peer = parseFloat(c[idx.peer]);
+      if(idx.teacher>=0) b.teacher = parseFloat(c[idx.teacher]);
+      if(b.studentId && b.domain){ await Storage.upsertBattery(b); count++ }
+    }
+    showAlert(`Import แล้ว ${count} แถว`,'success');
+    renderAdmin();
+  };
+  reader.readAsText(file);
+}
+
+window.exportCsv = function(type){
+  const data = state[type] || [];
+  if(!data.length){ showAlert('ไม่มีข้อมูล','warning'); return }
+  const keys = Object.keys(data[0]);
+  const csv = [keys.join(',')].concat(data.map(r=>keys.map(k=>{
+    const v = r[k]==null?'':String(r[k]).replace(/"/g,'""');
+    return /[",\n]/.test(v)?`"${v}"`:v;
+  }).join(','))).join('\n');
+  const blob = new Blob(['﻿'+csv],{type:'text/csv;charset=utf-8'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href=url; a.download=`idp_${type}_${new Date().toISOString().slice(0,10)}.csv`;
+  a.click(); URL.revokeObjectURL(url);
+};
+
+window.exportJson = function(){
+  const data = {plans:state.plans, logs:state.logs, comments:state.comments, battery:state.battery, exportedAt:new Date().toISOString()};
+  const blob = new Blob([JSON.stringify(data,null,2)],{type:'application/json'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href=url; a.download=`idp_backup_${new Date().toISOString().slice(0,10)}.json`;
+  a.click(); URL.revokeObjectURL(url);
+};
+
+function restoreJson(){
+  const f = $('#restoreFile').files[0];
+  if(!f){ showAlert('เลือกไฟล์ก่อน','warning'); return }
+  if(!confirm('ยืนยันการ restore? จะเขียนทับข้อมูลปัจจุบัน')) return;
+  const r = new FileReader();
+  r.onload = e=>{
+    try{
+      const d = JSON.parse(e.target.result);
+      localStorage.setItem('idp_plans', JSON.stringify(d.plans||[]));
+      localStorage.setItem('idp_logs', JSON.stringify(d.logs||[]));
+      localStorage.setItem('idp_comments', JSON.stringify(d.comments||[]));
+      localStorage.setItem('idp_battery', JSON.stringify(d.battery||[]));
+      showAlert('Restore เรียบร้อย','success');
+      renderAdmin();
+    }catch(err){ showAlert('ไฟล์ไม่ถูกต้อง','danger') }
+  };
+  r.readAsText(f);
+}
+
+/* ============================================================
+   ROUTER
+   ============================================================ */
+function render(){
+  if(!state.user){ renderLogin(); return }
+  if(state.user.role==='admin') renderAdmin();
+  else renderStudent();
+}
+
+render();
+</script>
+</body>
+</html>
